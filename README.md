@@ -6,7 +6,7 @@ Welcome to the **Simple-Docs** guide! This tool allows you to craft beautiful, i
 
 ### 📚 Full Documentation & Customization
 
-For more detailed instructions, advanced customization options, and to see the documentation tool in action, visit the full documentation site: **[View Full Documentation](#)**.
+For more detailed instructions, advanced customization options, and to see the documentation tool in action, visit the full documentation site: **[View Full Documentation]([#](https://tezumie.github.io/Simple-Docs/docs#Introduction))** which is built from Simple-Docs.
 
 Explore how you can leverage all the features Simple-Docs has to offer and learn how to fully customize your documentation site to meet your project's needs.
 
