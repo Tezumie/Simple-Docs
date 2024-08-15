@@ -153,12 +153,18 @@ To apply these settings, include the configuration object in your HTML file befo
 </html>
 ```
 
+## Code editors
+
+One of the benefits of using Simple-Docs is built in mini-IDE powered by ![aijs-mini-editor](https://github.com/Tezumie/aijs-mini-editor), constructed directly from your markdown file.
+
+![](https://firebasestorage.googleapis.com/v0/b/aijs-code-editor.appspot.com/o/xCzvqwLDxaXjkLrxAeFpzGGnpTA2%2FProjects%2FSimple-Docs%2Fimages%2Fmin-editor.png?alt=media&token=c4ba0b64-e29b-47a1-80a2-9da4b0660e06)
 ## 🔗 Links
 
-- **Documentation**: [Full Documentation](#)
-- **GitHub Repository**: [View on GitHub](#)
-- **AIJS Mini Editor**: [Full Documentation](https://aijs.io/docs#introduction-)
-- **AIJS Code Editor**: [Full Documentation](https://github.com/Tezumie/aijs-mini-editor)
+- **Documentation**: [Full Documentation](https://tezumie.github.io/Simple-Docs/docs#Introduction)
+- **GitHub Repository**: [View on GitHub](https://github.com/Tezumie/Simple-Docs)
+- **AIJS Mini Editor**: [View on GitHub](https://github.com/Tezumie/aijs-mini-editor)
+- **AIJS Code Editor**: [Full Documentation](https://aijs.io/docs#introduction-)
+- **Nerd Fonts**: [Cheat Sheet](https://www.nerdfonts.com/cheat-sheet)
 ---
 ## Contributing
 
