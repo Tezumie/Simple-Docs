@@ -168,7 +168,7 @@ One of the benefits of using Simple-Docs is built in mini-IDE powered by ![aijs-
 ---
 ## Contributing
 
-We welcome contributions to T5.js! If you have suggestions, bug reports, or would like to contribute code, please open an issue or submit a pull request on GitHub.
+We welcome contributions to Simple-Docs! If you have suggestions, bug reports, or would like to contribute code, please open an issue or submit a pull request on GitHub.
 
 Alternatively, reach out on Discord or join our community: https://discord.com/invite/eW7MbvXZbY
 
