@@ -437,7 +437,7 @@ iframe:not(.output) {
     overflow: hidden;
     border-radius: 11px;
     border: 1px solid var(--borderColor);
-    background-color: var(--backGround);
+    background-color: var(--token-default-bg);
 }
 
 .header {
@@ -576,6 +576,7 @@ pre[class*="language-"] code {
 
 :root {
     --font-family-inter: "Inter", sans-serif;
+    --font-family-inter: "DM Sans", sans-serif;
     --font-family-ibm-plex-mono: "IBM Plex Mono", monospace;
 }
 
@@ -808,7 +809,7 @@ html {
     padding: 3px;
     width: 30px;
     height: 30px;
-    border-radius: 0px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.1s;
 }
@@ -911,7 +912,7 @@ html {
 .subsection-link {
     font-weight: 400;
     color: var(--dimText) !important;
-    margin-bottom: 0px;
+    margin-bottom: 4px;
     margin-top: 0px;
     padding: 2px 10px;
     font-size: 15px;
@@ -998,7 +999,7 @@ html {
     margin-left: auto;
     border-radius: 5px;
     transition: all 0.1s;
-        color: var(--textColor);
+    color: var(--textColor);
 }
 
 .toggle-button:hover {
@@ -1203,19 +1204,42 @@ h1::after {
     font-family: "NerdFontSymbols";
     content: var(--header-icon, "") var(--header-icon-space, "");
     padding: 0px;
-    border-radius: 5px;
     color: var(--header-color, var(--active-color));
     margin-right: 0px;
     font-size: 13px;
     position: relative;
-    top: 3px;
+    top: 2px;
     left: 0px;
     font-weight: normal;
+    transition: all 0.2s;
+
 }
 
 .subsection-link::before {
-    color: var(--header-color, var(--active-color));
+    /* color: var(--noteText); */
+    /* opacity: 0.0; */
     top: -1px;
+}
+
+.subsection-link.active {
+    background-color: var(--secondary) !important;
+    /* border-radius: 5px 0px 0px 5px;
+    border-right:  3px solid var(--header-color, var(--active-color)); */
+}
+
+.subsection-link.active:hover {
+    background-color: var(--hover) !important;
+
+}
+
+.subsection-link.active::before {
+    opacity: 1;
+    top: -1px;
+}
+
+.subsection-link:hover::before {
+    color: var(--header-color, var(--active-color));
+    opacity: 1;
 }
 
 h1::before,
@@ -1379,6 +1403,15 @@ img {
     flex-direction: column;
 }
 
+.callout-note code,
+.callout-alert code,
+.callout code {
+    background-color: var(--backGround);
+    color: var(--textColor);
+    border: 1px solid var(--borderColor);
+
+}
+
 .callout-note p {}
 
 .callout-alert p {}
@@ -1446,7 +1479,7 @@ pre[class*="language-"] {
     padding-right: 5px;
     background-color: var(--secondary);
     color: var(--dimText);
-    border: 1px solid var(--hover);
+    border: 1px solid var(--borderColor);
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.2s;
@@ -1536,7 +1569,7 @@ pre code {
 
 pre[class*="language-"] {
     background-color: var(--token-default-bg);
-    color: var(--textColor);
+    color: var(--token-default-fg);
     padding: 0px;
     margin: 0;
     overflow-x: auto;
@@ -1568,7 +1601,7 @@ pre[class*="language-"] code {
 
 pre[class*="language-"],
 code[class*="language-"] {
-    color: var(--textColor);
+    color: var(--token-default-fg);
     font-size: 13px;
     text-shadow: none;
     font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono", "Courier New", monospace;
@@ -1931,7 +1964,7 @@ pre[class*="language-"]>code[class*="language-"] {
         overflow-y: auto;
         height: 100vh;
         padding: 10px;
-       
+
         position: absolute;
         padding-bottom: 200px;
         z-index: 100;
@@ -1973,6 +2006,7 @@ pre[class*="language-"]>code[class*="language-"] {
     }
 }
 
+/* Initially, the nav is hidden */
 #navbar.navclose {
     display: none;
 
@@ -2003,7 +2037,7 @@ pre[class*="language-"] code {
 }
 
 .gutter {
-    z-index: 2;
+    z-index: 1;
 }
 
 .button-grid {
