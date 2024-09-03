@@ -1,4 +1,4 @@
-const config = window.docsConfig || {};
+const config = window.docsConfig || {}
 function generateHTML() {
     const header = document.createElement("header")
     const headerContainer = document.createElement("div")
@@ -8,27 +8,26 @@ function generateHTML() {
     const homeButton = document.createElement("button")
     homeButton.id = "homeButton"
     homeButton.className = "home-button"
-const logoUrl = config.logo || null;
-if (logoUrl) {
+    const logoUrl = config.logo || null
+    if (logoUrl) {
         // Set the logo as the background image of the home button
-        homeButton.style.backgroundImage = `url(${logoUrl})`;
-        homeButton.style.backgroundSize = "cover"; // Ensure the image covers the button
-        homeButton.style.backgroundPosition = "center"; // Center the image
+        homeButton.style.backgroundImage = `url(${logoUrl})`
+        homeButton.style.backgroundSize = "contain" // Ensure the image covers the button
+        homeButton.style.backgroundPosition = "center" // Center the image
     } else {
         // Use the Nerd Font icon as the default content
-        homeButton.textContent = "\uEB06"; // Unicode for the Nerd Font icon
-        homeButton.style.fontFamily = "NerdFontSymbols"; // Ensure the correct font family is applied
-        homeButton.style.fontSize = "24px"; // Adjust the size as needed
-        homeButton.style.display = "flex";
-        homeButton.style.alignItems = "center";
-        homeButton.style.justifyContent = "center";
+        homeButton.textContent = "\uEB06" // Unicode for the Nerd Font icon
+        homeButton.style.fontFamily = "NerdFontSymbols" // Ensure the correct font family is applied
+        homeButton.style.fontSize = "24px" // Adjust the size as needed
+        homeButton.style.display = "flex"
+        homeButton.style.alignItems = "center"
+        homeButton.style.justifyContent = "center"
     }
 
-    const redirectUrl = config.url || "";
+    const redirectUrl = config.url || ""
     homeButton.addEventListener("click", () => {
-        window.location.href = redirectUrl;
-    });
-
+        window.location.href = redirectUrl
+    })
 
     // Append the toggle button to the header container
     headerContainer.appendChild(homeButton)
@@ -138,18 +137,23 @@ function loadStylesheets() {
 loadStylesheets()
 
 function loadScripts(scripts, callback) {
-    let loadedCount = 0
+    let loadedCount = 0;
+
     scripts.forEach((src) => {
-        const script = document.createElement("script")
-        script.src = src
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = false; // Ensure scripts load in order if they have dependencies
         script.onload = () => {
-            loadedCount++
+            loadedCount++;
             if (loadedCount === scripts.length) {
-                callback()
+                callback(); // All scripts are loaded
             }
-        }
-        document.body.appendChild(script)
-    })
+        };
+        script.onerror = () => {
+            console.error(`Failed to load script: ${src}`);
+        };
+        document.body.appendChild(script);
+    });
 }
 
 const scripts = [
@@ -187,12 +191,12 @@ document.addEventListener("DOMContentLoaded", () => {
             setTheme("dark")
         }
     })
-    const savedTheme = localStorage.getItem("theme") ||  config.theme || "light"
+    const savedTheme = localStorage.getItem("theme") || config.theme || "light"
     setTheme(savedTheme)
 })
 
 let darkThemeName = "aijs_dark_modern"
-
+let lightThemeName = "aijs_light"
 function setTheme(theme) {
     if (theme === "dark") {
         document.documentElement.style.setProperty("--primary", "#141414")
@@ -201,7 +205,7 @@ function setTheme(theme) {
         document.documentElement.style.setProperty("--backGround", "#0e0e0f")
         document.documentElement.style.setProperty("--backGroundHome", "#181818")
         document.documentElement.style.setProperty("--accent", "#4154ff")
-        document.documentElement.style.setProperty("--hover", "#303030")
+        document.documentElement.style.setProperty("--hover", "#1f1f1f")
         document.documentElement.style.setProperty("--textColor", "#f3f3f3")
         document.documentElement.style.setProperty("--dimText", "#d8dddf")
         document.documentElement.style.setProperty("--noteText", "#767676")
@@ -228,7 +232,7 @@ function setTheme(theme) {
         document.documentElement.style.setProperty("--hover", "#e9e9e9")
         document.documentElement.style.setProperty("--textColor", "#161720")
         document.documentElement.style.setProperty("--dimText", "#272838")
-        document.documentElement.style.setProperty("--noteText", "#9e9e9e")
+        document.documentElement.style.setProperty("--noteText", "#7d7d7d")
         document.documentElement.style.setProperty("--borderColor", "#e0e0e0")
         document.documentElement.style.setProperty("--textHilight", "#add6ffa6")
         document.documentElement.style.setProperty("--blurColor", "#ffffff77")
@@ -240,8 +244,8 @@ function setTheme(theme) {
         document.documentElement.style.setProperty("--callOut-alt", "#e8e3fd")
         themeToggle.classList.remove("dark-theme")
         themeToggle.classList.add("light-theme")
-        setMonacoEditorTheme("aijs_light")
-        setEditorTheme("aijs_light")
+        setMonacoEditorTheme(lightThemeName)
+        setEditorTheme(lightThemeName)
     }
     document.documentElement.setAttribute("data-theme", theme)
     localStorage.setItem("theme", theme)
@@ -349,16 +353,16 @@ function setTokenColorsAsVariables(rules) {
 
 document.addEventListener("DOMContentLoaded", () => {
     loadScripts(scripts, () => {
-        let markdownSections = {}
+        let markdownSections = {};
         fetch("docs.md")
             .then((response) => response.text())
             .then((markdownText) => {
-                markdownSections = parseMarkdownIntoSections(markdownText)
-                populateNavigation(markdownSections)
-                loadInitialContent(markdownSections)
+                markdownSections = parseMarkdownIntoSections(markdownText);
+                populateNavigation(markdownSections);
+                loadInitialContent(markdownSections);
             })
-            .catch((error) => console.error("Error loading the Markdown file:", error))
-
+            .catch((error) => console.error("Error loading the Markdown file:", error));
+  
         function parseMarkdownIntoSections(markdownText) {
             let sections = {}
             const lines = markdownText.split("\n")
@@ -588,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const elementTop = element.getBoundingClientRect().top
             const containerScrollTop = container.scrollTop
             const offsetTop = elementTop - containerTop + containerScrollTop
-            container.scrollTop = offsetTop - 20
+            container.scrollTop = offsetTop + 2;
         }
         function setScrollBehavior(behavior) {
             const content = document.getElementById("content")
@@ -631,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const nextSectionId =
                 currentSectionIndex < sectionIds.length - 1 ? sectionIds[currentSectionIndex + 1] : null
 
-            if (currentLoadedSectionId !== sectionId || currentLoadedSectionId === sectionId) {
+            if (marked && currentLoadedSectionId !== sectionId || marked && currentLoadedSectionId === sectionId) {
                 contentArea.innerHTML = ""
 
                 const section = sections[sectionId]
@@ -723,7 +727,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
         }
-
         function updateStickyHeader() {
             const h2Wrappers = document.querySelectorAll(".h2-wrapper")
             let closestWrapper = null
@@ -731,9 +734,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             h2Wrappers.forEach((wrapper) => {
                 const rect = wrapper.getBoundingClientRect()
-                const distance = rect.top
+                const distance = Math.abs(rect.top) // Use absolute value to get closest to top
 
-                if (distance >= 0 && distance < closestDistance) {
+                if (distance < closestDistance) {
                     closestDistance = distance
                     closestWrapper = wrapper
                 }
@@ -745,8 +748,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (closestWrapper) {
                 closestWrapper.classList.add("sticky")
+
+                const h2Element = closestWrapper.querySelector("h2")
+                const subsectionId = h2Element ? h2Element.getAttribute("id") : null
+
+                if (subsectionId) {
+                    const navLinks = document.querySelectorAll(".subsection-link")
+                    let isActiveSet = false
+
+                    navLinks.forEach((link) => {
+                        const href = link.getAttribute("href")
+
+                        if (href.includes(subsectionId) && !isActiveSet) {
+                            link.classList.add("active")
+                            isActiveSet = true // Ensure only one link is active
+                        } else {
+                            link.classList.remove("active")
+                        }
+                    })
+                }
             }
         }
+
         const contentDiv = document.getElementById("content")
         contentDiv.addEventListener("scroll", updateStickyHeader)
 
