@@ -136,7 +136,7 @@ function loadStylesheets() {
 
 loadStylesheets()
 
-function loadScripts(scripts, callback) {
+async function loadScripts(scripts, callback) {
     let loadedCount = 0;
 
     scripts.forEach((src) => {
@@ -351,8 +351,8 @@ function setTokenColorsAsVariables(rules) {
     })
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadScripts(scripts, () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    await loadScripts(scripts, () => {
         let markdownSections = {};
         fetch("docs.md")
             .then((response) => response.text())
@@ -362,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 loadInitialContent(markdownSections);
             })
             .catch((error) => console.error("Error loading the Markdown file:", error));
-  
+
         function parseMarkdownIntoSections(markdownText) {
             let sections = {}
             const lines = markdownText.split("\n")
